@@ -2,20 +2,22 @@ from rest_framework import serializers
 
 from race.models import Race
 
-
-class RaceSerializer(serializers.ModelSerializer):
-    racial_ability_score_increase = serializers.SerializerMethodField(read_only=True)
-
+class RaceBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Race
         fields = [
             "race_uuid",
             "name",
-            "description",
             "size",
             "speed",
-            "racial_ability_score_increase",
         ]
+        
+class RaceFullSerializer(RaceBaseSerializer):
+    racial_ability_score_increase = serializers.SerializerMethodField(read_only=True)
+
+    class Meta(RaceBaseSerializer.Meta):
+        model = Race
+        fields =  RaceBaseSerializer.Meta.fields + ['description', 'racial_ability_score_increase']
 
     def get_racial_ability_score_increase(self, obj: Race):
         data = {

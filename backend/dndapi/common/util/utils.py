@@ -1,5 +1,7 @@
 import random
 
+from race.models import Race
+
 """
 Dice Rolling
 """
@@ -53,9 +55,21 @@ def base_stat_mod_helper(
 """
 Character attributes
 """
+def fetch_race_object_by_name_or_uuid(request):
+    race = {}
+    if "race_attributes" in request:
+        if "uuid" in request["race_attributes"]:
+            race = Race.objects.filter(
+                race_uuid=request["race_attributes"]["uuid"]
+            )
+        if not race and "name" in request["race_attributes"]:
+            race = Race.objects.filter(
+                name__iexact=request["race_attributes"]["name"]
+            )
+            pass
+    return race
 
-
-def get_character_attributes(character, race) -> (dict[str, int]):
+def get_character_attributes(character, race: Race) -> (dict[str, int]):
     data = {
         "strength": int(character.base_strength),
         "dexterity": int(character.base_dexterity),
@@ -66,14 +80,11 @@ def get_character_attributes(character, race) -> (dict[str, int]):
     }
     if race:
         data = {
-            "strength": int(character.base_strength) + race.strength_ability_increase,
-            "dexterity": int(character.base_dexterity)
-            + race.dexterity_ability_increase,
-            "constitution": int(character.base_constitution)
-            + race.constitution_ability_increase,
-            "intelligence": int(character.base_intelligence)
-            + race.intellegince_ability_increase,
-            "wisdom": int(character.base_wisdom) + race.wisdom_ability_increase,
-            "charisma": int(character.base_charisma) + race.charisma_ability_increase,
+            "strength": int(character.base_strength) + race['strength'],
+            "dexterity": int(character.base_dexterity) + race['dexterity'],
+            "constitution": int(character.base_constitution) + race['constitution'],
+            "intelligence": int(character.base_intelligence) + race['intellegince'],
+            "wisdom": int(character.base_wisdom) + race['wisdom'],
+            "charisma": int(character.base_charisma) + race['charisma'],
         }
     return data
