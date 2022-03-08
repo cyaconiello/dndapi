@@ -7,6 +7,7 @@ from race.models import Race
 class RaceListCreateView(generics.ListCreateAPIView):
     queryset = Race.objects.all()
     serializer_class = RaceSerializer
+    # add bas attribute bonus
 
 
 class RaceDeatailsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

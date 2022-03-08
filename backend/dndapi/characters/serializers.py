@@ -24,29 +24,30 @@ class CharacterSerializer(serializers.ModelSerializer):
         ]
 
     def get_race_attributes(self, obj: Character):
-        race: Race = Race.objects.all().filter(name=obj.race).first()
+        print(obj)
+        race: Race = Race.objects.all().filter(name=obj.race) or []
         data = {}
         if race:
             data = {
-                "name": race.name,
-                "uuid": race.race_uuid,
-                "size": race.size,
-                "speed": race.speed,
+                "name": race.first().name,
+                "uuid": race.first().race_uuid,
+                "size": race.first().size,
+                "speed": race.first().speed,
             }
         return data
 
     def get_attributes(self, obj: Character):
-        race: Race = Race.objects.all().filter(name=obj.race).first()
+        race: Race = Race.objects.all().filter(name=obj.race)
         attributes = {}
         if race:
-            attributes = get_character_attributes(obj, race)
+            attributes = get_character_attributes(obj, race.first())
         return attributes
 
     def get_saving_throws(self, obj: Character):
-        race: Race = Race.objects.all().filter(name=obj.race).first()
+        race: Race = Race.objects.all().filter(name=obj.race)
         saves = {}
         if race:
-            saves = get_character_attributes(obj, race)
+            saves = get_character_attributes(obj, race.first())
             for a in saves:
                 saves[a] = base_stat_mod_calculation(saves[a])
         return saves

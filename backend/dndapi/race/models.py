@@ -9,7 +9,7 @@ class Race(models.Model):
     Race informantion
     """
 
-    race_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    race_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=120, default="Dwarf")
     description = models.TextField(blank=True)
     size = models.CharField(max_length=10, choices=size_choices, default="medium")

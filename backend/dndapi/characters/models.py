@@ -11,9 +11,7 @@ class Character(models.Model):
     Character information
     """
 
-    character_uuid = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, editable=False
-    )
+    character_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=120)
     age = models.PositiveIntegerField(default=1)
     gender = models.CharField(max_length=6, choices=genders_choices, default="male")

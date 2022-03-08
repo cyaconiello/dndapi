@@ -9,6 +9,13 @@ class CharactersListCreateView(generics.ListCreateAPIView):
     queryset = Character.objects.all()
     serializer_class = CharacterSerializer
 
+    def perform_create (self, serializer: CharacterSerializer):
+        race = fetch_race_object(self.request)
+        print()
+        if race:
+            serializer.save(race=race.first())
+        return super().perform_create(serializer)
+
 
 class CharacterDeatailsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Character.objects.all()
@@ -17,17 +24,22 @@ class CharacterDeatailsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyA
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
-        if "race_attributes" in request.data:
-            updated_race = {}
-            if "uuid" in request.data["race_attributes"]:
-                updated_race = Race.objects.filter(
-                    race_uuid=request.data["race_attributes"]["uuid"]
-                )
-            if not updated_race and "name" in request.data["race_attributes"]:
-                updated_race = Race.objects.filter(
-                    name__iexact=request.data["race_attributes"]["name"]
-                )
-            if updated_race:
-                instance.race = updated_race.first()
-                instance.save()
+        race = fetch_race_object(request)
+        if race:
+            instance.race = race.first()
+            instance.save()
         return super().update(request, *args, **kwargs)
+
+# put in utility file?
+def fetch_race_object(request):
+    race = {}
+    if "race_attributes" in request.data:
+        if "uuid" in request.data["race_attributes"]:
+            race = Race.objects.filter(
+                race_uuid=request.data["race_attributes"]["uuid"]
+            )
+        if not race and "name" in request.data["race_attributes"]:
+            race = Race.objects.filter(
+                name__iexact=request.data["race_attributes"]["name"]
+            )
+    return race
