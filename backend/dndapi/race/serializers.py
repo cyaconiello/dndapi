@@ -25,7 +25,7 @@ class RaceCompleteSerializer(RaceBaseSerializer):
             'strength_ability_increase',
             'dexterity_ability_increase',
             'constitution_ability_increase',
-            'intellegince_ability_increase',
+            'intelligince_ability_increase',
             'wisdom_ability_increase',
             'charisma_ability_increase',
         ]

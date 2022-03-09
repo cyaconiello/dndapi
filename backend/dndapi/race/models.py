@@ -18,7 +18,7 @@ class Race(models.Model):
     strength_ability_increase = models.PositiveIntegerField(default=0)
     dexterity_ability_increase = models.PositiveIntegerField(default=0)
     constitution_ability_increase = models.PositiveIntegerField(default=0)
-    intellegince_ability_increase = models.PositiveIntegerField(default=0)
+    intelligince_ability_increase = models.PositiveIntegerField(default=0)
     wisdom_ability_increase = models.PositiveIntegerField(default=0)
     charisma_ability_increase = models.PositiveIntegerField(default=0)
 
