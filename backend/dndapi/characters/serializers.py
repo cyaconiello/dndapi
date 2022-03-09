@@ -1,12 +1,14 @@
 from rest_framework import serializers
 
-from race.serializers import RaceBaseSerializer, RaceFullSerializer
-from common.util.utils import base_stat_mod_calculation, get_character_attributes, fetch_race_object_by_name_or_uuid
+from race.serializers import RaceBaseSerializer, RaceCompleteSerializer
+from common.util.utils import stat_mod_calculation, get_character_attributes, fetch_race_object_by_name_or_uuid
 from characters.models import Character
 
-
+"""
+Serializer used for creating/updating characters
+"""
 class CharacterBaseSerializer(serializers.ModelSerializer):
-    race = RaceBaseSerializer(many=False, read_only=True)
+    race = serializers.SlugRelatedField(slug_field='race_uuid', read_only=True)
 
     class Meta:
         model = Character
@@ -36,12 +38,16 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
         if race:
             instance.race = race.first()
         return super().update(instance, validated_data)
-    
+
+"""
+Serializer used to compile the entire character into a single endpoint call
+used for GET on List/Details
+"""
 class CharacterCompiledSerializer(CharacterBaseSerializer):
     attributes = serializers.SerializerMethodField(read_only=True)
     saving_throws = serializers.SerializerMethodField(read_only=True)
-    race = RaceBaseSerializer(many=False, read_only=True)
-
+    race = RaceBaseSerializer(read_only=True)
+    
     class Meta:
         model = Character
         fields = [
@@ -56,30 +62,19 @@ class CharacterCompiledSerializer(CharacterBaseSerializer):
         ]
 
     def get_attributes(self, obj: Character):
-        race_serializer = RaceFullSerializer(obj.race)
+        race_serializer = RaceCompleteSerializer(obj.race)
         attributes = {}
         if race_serializer:
-            attributes = get_character_attributes(obj, race_serializer.data['racial_ability_score_increase'])
+            attributes = get_character_attributes(obj, race_serializer.data)
         return attributes
 
     def get_saving_throws(self, obj: Character):
-        race_serializer = RaceFullSerializer(obj.race)
+        race_serializer = RaceCompleteSerializer(obj.race)
         saves = {}
         if race_serializer:
-            saves = get_character_attributes(obj, race_serializer.data['racial_ability_score_increase'])
+            saves = get_character_attributes(obj, race_serializer.data)
             for a in saves:
-                saves[a] = base_stat_mod_calculation(saves[a])
+                saves[a] = stat_mod_calculation(saves[a])
         return saves
 
-    # def create(self, validated_data):
-    #     race = fetch_race_object_by_name_or_uuid(self.initial_data)
-    #     if race:
-    #         validated_data['race'] = race.first()
-    #     return super().create(validated_data)
-
-    # def update(self, instance: Character, validated_data):
-    #     race = fetch_race_object_by_name_or_uuid(self.initial_data)
-    #     if race:
-    #         instance.race = race.first()
-    #     return super().update(instance, validated_data)
     

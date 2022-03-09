@@ -30,30 +30,31 @@ def drop_dice(
 
 
 """
-Saving Throws
+Calculation for attribute mods
+Todo: add prof bonus (comes from first class)
 """
-
-
-def base_stat_mod_calculation(base_stat: int) -> int:
+def stat_mod_calculation(base_stat: int, proficiency_bonus: int = 0, proficient: bool = False) -> int:
     start_range = 0
     range_increase = 2
     starting_mod = -5
-    return base_stat_mod_helper(base_stat, start_range, range_increase, starting_mod)
+    if proficient:
+        base_stat += proficiency_bonus
+    return stat_mod_helper(base_stat, start_range, range_increase, starting_mod)
 
 
-def base_stat_mod_helper(
+def stat_mod_helper(
     base_stat: int, start_range: int, range_increase: int, starting_mod: int
 ) -> int:
     if base_stat in range(start_range, range_increase):
         return starting_mod
     else:
-        return base_stat_mod_helper(
+        return stat_mod_helper(
             base_stat, start_range + 2, range_increase + 2, starting_mod + 1
         )
 
 
 """
-Character attributes
+Getting the Race from user request obj by 'uuid' or 'name'
 """
 def fetch_race_object_by_name_or_uuid(request):
     race = {}
@@ -69,22 +70,17 @@ def fetch_race_object_by_name_or_uuid(request):
             pass
     return race
 
+"""
+Formatting the Character attributes:
+since you cant have a character without a race no condition needed
+"""
 def get_character_attributes(character, race: Race) -> (dict[str, int]):
     data = {
-        "strength": int(character.base_strength),
-        "dexterity": int(character.base_dexterity),
-        "constitution": int(character.base_constitution),
-        "intelligence": int(character.base_intelligence),
-        "wisdom": int(character.base_wisdom),
-        "charisma": int(character.base_charisma),
+        "strength": int(character.base_strength) + int(race['strength_ability_increase']),
+        "dexterity": int(character.base_dexterity) + int(race['dexterity_ability_increase']),
+        "constitution": int(character.base_constitution) + int(race['constitution_ability_increase']),
+        "intelligence": int(character.base_intelligence) + int(race['intellegince_ability_increase']),
+        "wisdom": int(character.base_wisdom) + int(race['wisdom_ability_increase']),
+        "charisma": int(character.base_charisma) + int(race['charisma_ability_increase']),
     }
-    if race:
-        data = {
-            "strength": int(character.base_strength) + race['strength'],
-            "dexterity": int(character.base_dexterity) + race['dexterity'],
-            "constitution": int(character.base_constitution) + race['constitution'],
-            "intelligence": int(character.base_intelligence) + race['intellegince'],
-            "wisdom": int(character.base_wisdom) + race['wisdom'],
-            "charisma": int(character.base_charisma) + race['charisma'],
-        }
     return data

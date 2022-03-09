@@ -24,7 +24,6 @@ class Race(models.Model):
 
     # class features
     # hit_die = models.CharField(max_length=6, choices=dices_choices, default='d6')
-    # attribute_proficiencies = MultipleChoiceField(choices=attribute_proficiencies_choicies)
 
     def __str__(self):
         return self.name

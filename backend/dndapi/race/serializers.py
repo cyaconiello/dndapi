@@ -2,30 +2,30 @@ from rest_framework import serializers
 
 from race.models import Race
 
+"""
+Serializer used for returning the entire character
+"""
 class RaceBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Race
         fields = [
-            "race_uuid",
-            "name",
-            "size",
-            "speed",
+            'race_uuid',
+            'name',
+            'size',
+            'speed',
         ]
-        
-class RaceFullSerializer(RaceBaseSerializer):
-    racial_ability_score_increase = serializers.SerializerMethodField(read_only=True)
 
+"""
+Serializer used for GET/PUT/POST for Races
+"""
+class RaceCompleteSerializer(RaceBaseSerializer):
     class Meta(RaceBaseSerializer.Meta):
         model = Race
-        fields =  RaceBaseSerializer.Meta.fields + ['description', 'racial_ability_score_increase']
-
-    def get_racial_ability_score_increase(self, obj: Race):
-        data = {
-            "strength": obj.strength_ability_increase,
-            "dexterity": obj.dexterity_ability_increase,
-            "constitution": obj.constitution_ability_increase,
-            "intellegince": obj.intellegince_ability_increase,
-            "wisdom": obj.wisdom_ability_increase,
-            "charisma": obj.charisma_ability_increase,
-        }
-        return data
+        fields = RaceBaseSerializer.Meta.fields +  [
+            'strength_ability_increase',
+            'dexterity_ability_increase',
+            'constitution_ability_increase',
+            'intellegince_ability_increase',
+            'wisdom_ability_increase',
+            'charisma_ability_increase',
+        ]
