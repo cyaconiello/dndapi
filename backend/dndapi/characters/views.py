@@ -1,16 +1,22 @@
 from rest_framework import generics
 
-from race.models import Race
-from race.serializers import RaceBaseSerializer
-from characters.serializers import CharacterSerializer
+from characters.serializers import CharacterBaseSerializer, CharacterCompiledSerializer
 from characters.models import Character
 
 
 class CharactersListCreateView(generics.ListCreateAPIView):
     queryset = Character.objects.all()
-    serializer_class = CharacterSerializer
+    
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CharacterBaseSerializer
+        return CharacterCompiledSerializer
 
 class CharacterDeatailsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Character.objects.all()
-    serializer_class = CharacterSerializer
     lookup_field = "character_uuid"
+    
+    def get_serializer_class(self):
+        if self.request.method == 'PUT':
+            return CharacterBaseSerializer
+        return CharacterCompiledSerializer

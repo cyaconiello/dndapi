@@ -5,7 +5,39 @@ from common.util.utils import base_stat_mod_calculation, get_character_attribute
 from characters.models import Character
 
 
-class CharacterSerializer(serializers.ModelSerializer):
+class CharacterBaseSerializer(serializers.ModelSerializer):
+    race = RaceBaseSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Character
+        fields = [
+            'character_uuid',
+            'name',
+            'age',
+            'gender',
+            'background',
+            'race',
+            'base_strength',
+            'base_dexterity',
+            'base_constitution',
+            'base_intelligence',
+            'base_wisdom',
+            'base_charisma',
+        ]
+
+    def create(self, validated_data):
+        race = fetch_race_object_by_name_or_uuid(self.initial_data)
+        if race:
+            validated_data['race'] = race.first()
+        return super().create(validated_data)
+
+    def update(self, instance: Character, validated_data):
+        race = fetch_race_object_by_name_or_uuid(self.initial_data)
+        if race:
+            instance.race = race.first()
+        return super().update(instance, validated_data)
+    
+class CharacterCompiledSerializer(CharacterBaseSerializer):
     attributes = serializers.SerializerMethodField(read_only=True)
     saving_throws = serializers.SerializerMethodField(read_only=True)
     race = RaceBaseSerializer(many=False, read_only=True)
@@ -39,15 +71,15 @@ class CharacterSerializer(serializers.ModelSerializer):
                 saves[a] = base_stat_mod_calculation(saves[a])
         return saves
 
-    def create(self, validated_data):
-        race = fetch_race_object_by_name_or_uuid(self.initial_data)
-        if race:
-            validated_data['race'] = race.first()
-        return super().create(validated_data)
+    # def create(self, validated_data):
+    #     race = fetch_race_object_by_name_or_uuid(self.initial_data)
+    #     if race:
+    #         validated_data['race'] = race.first()
+    #     return super().create(validated_data)
 
-    def update(self, instance: Character, validated_data):
-        race = fetch_race_object_by_name_or_uuid(self.initial_data)
-        if race:
-            instance.race = race.first()
-        return super().update(instance, validated_data)
+    # def update(self, instance: Character, validated_data):
+    #     race = fetch_race_object_by_name_or_uuid(self.initial_data)
+    #     if race:
+    #         instance.race = race.first()
+    #     return super().update(instance, validated_data)
     

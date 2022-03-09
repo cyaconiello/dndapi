@@ -3,6 +3,8 @@ from django.urls import path
 from characters.views import (
     CharacterDeatailsRetrieveUpdateDestroyView,
     CharactersListCreateView,
+    # CharactersListView,
+    # CharactersCreateView,
 )
 
 urlpatterns = [

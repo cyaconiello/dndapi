@@ -57,14 +57,14 @@ Character attributes
 """
 def fetch_race_object_by_name_or_uuid(request):
     race = {}
-    if "race_attributes" in request:
-        if "uuid" in request["race_attributes"]:
+    if "race" in request:
+        if "uuid" in request["race"]:
             race = Race.objects.filter(
-                race_uuid=request["race_attributes"]["uuid"]
+                race_uuid=request["race"]["uuid"]
             )
-        if not race and "name" in request["race_attributes"]:
+        if not race and "name" in request["race"]:
             race = Race.objects.filter(
-                name__iexact=request["race_attributes"]["name"]
+                name__iexact=request["race"]["name"]
             )
             pass
     return race
