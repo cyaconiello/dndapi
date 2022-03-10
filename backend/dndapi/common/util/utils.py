@@ -1,12 +1,12 @@
 import random
+import uuid
 
+from languages.models import Language
 from race.models import Race
 
 """
 Dice Rolling
 """
-
-
 def roll_dice(number_of_dice: int, number_of_sides: int) -> list[int]:
     i = 0
     list_of_rolls = []
@@ -67,8 +67,22 @@ def fetch_race_object_by_name_or_uuid(request):
             race = Race.objects.filter(
                 name__iexact=request["race"]["name"]
             )
-            pass
     return race
+
+"""
+Getting the Language from user request obj by 'uuid' or 'name'
+"""
+def fetch_language_object_by_name_or_uuid(request):
+    languages = []
+    if "languages" in request:
+        for key in request["languages"]:
+            if key:
+                language = Language.objects.filter(name__iexact=key)
+                if not language:
+                    language = Language.objects.filter(pk=key)
+                if language:
+                    languages.append(language.first().language_uuid)
+    return languages
 
 """
 Formatting the Character attributes:
@@ -79,7 +93,7 @@ def get_character_attributes(character, race: Race) -> (dict[str, int]):
         "strength": int(character.base_strength) + int(race['strength_ability_increase']),
         "dexterity": int(character.base_dexterity) + int(race['dexterity_ability_increase']),
         "constitution": int(character.base_constitution) + int(race['constitution_ability_increase']),
-        "intelligence": int(character.base_intelligence) + int(race['intellegince_ability_increase']),
+        "intelligence": int(character.base_intelligence) + int(race['intelligince_ability_increase']),
         "wisdom": int(character.base_wisdom) + int(race['wisdom_ability_increase']),
         "charisma": int(character.base_charisma) + int(race['charisma_ability_increase']),
     }
