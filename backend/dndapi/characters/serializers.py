@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from race.serializers import RaceBaseSerializer, RaceCompleteSerializer
+from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
 from common.util.utils import stat_mod_calculation, get_character_attributes, fetch_race_object_by_name_or_uuid
 from characters.models import Character
 

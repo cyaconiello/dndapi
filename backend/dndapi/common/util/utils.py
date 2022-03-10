@@ -1,7 +1,7 @@
 from rest_framework import fields
 import random
 
-from race.models import Race
+from races.models import Race
 
 """
 Dice Rolling

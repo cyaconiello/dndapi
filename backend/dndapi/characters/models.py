@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from race.models import Race
+from races.models import Race
 from common.util.utils import roll_dice, drop_dice
 from common.util.choices import genders_choices
 

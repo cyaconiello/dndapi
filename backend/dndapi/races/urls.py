@@ -1,6 +1,6 @@
 from django.urls import path
 
-from race.views import RaceDeatailsRetrieveUpdateDestroyView, RaceListCreateView
+from races.views import RaceDeatailsRetrieveUpdateDestroyView, RaceListCreateView
 
 urlpatterns = [
     path("", RaceListCreateView.as_view()),

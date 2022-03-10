@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from race.serializers import RaceCompleteSerializer
-from race.models import Race
+from races.serializers import RaceCompleteSerializer
+from races.models import Race
 
 
 class RaceListCreateView(generics.ListCreateAPIView):

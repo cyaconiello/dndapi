@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from common.util.utils import CustomMultipleChoiceField
 from common.util.choices import language_choices
-from race.models import Race
+from races.models import Race
 
 """
 Serializer used for returning the entire character
