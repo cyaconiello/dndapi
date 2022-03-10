@@ -1,7 +1,6 @@
+from rest_framework import fields
 import random
-import uuid
 
-from languages.models import Language
 from race.models import Race
 
 """
@@ -70,21 +69,6 @@ def fetch_race_object_by_name_or_uuid(request):
     return race
 
 """
-Getting the Language from user request obj by 'uuid' or 'name'
-"""
-def fetch_language_object_by_name_or_uuid(request):
-    languages = []
-    if "languages" in request:
-        for key in request["languages"]:
-            if key:
-                language = Language.objects.filter(name__iexact=key)
-                if not language:
-                    language = Language.objects.filter(pk=key)
-                if language:
-                    languages.append(language.first().language_uuid)
-    return languages
-
-"""
 Formatting the Character attributes:
 since you cant have a character without a race no condition needed
 """
@@ -98,3 +82,8 @@ def get_character_attributes(character, race: Race) -> (dict[str, int]):
         "charisma": int(character.base_charisma) + int(race['charisma_ability_increase']),
     }
     return data
+
+        
+class CustomMultipleChoiceField(fields.MultipleChoiceField):
+    def to_representation(self, value):
+        return list(super().to_representation(value))

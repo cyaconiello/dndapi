@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     "multiselectfield",
     "rest_framework",
     # my apps
+    "items",
     "race",
-    "languages",
     "characters",
 ]
 

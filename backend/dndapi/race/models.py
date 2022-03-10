@@ -1,8 +1,8 @@
 import uuid
 from django.db import models
+from multiselectfield import MultiSelectField
 
-from languages.models import Language
-from common.util.choices import size_choices
+from common.util.choices import size_choices, language_choices
 
 class Race(models.Model):
     """
@@ -14,6 +14,7 @@ class Race(models.Model):
     description = models.TextField(blank=True)
     size = models.CharField(max_length=10, choices=size_choices, default="medium")
     speed = models.PositiveIntegerField(default=30)
+    # item_proficiencies =
     
     strength_ability_increase = models.PositiveIntegerField(default=0)
     dexterity_ability_increase = models.PositiveIntegerField(default=0)
@@ -22,7 +23,7 @@ class Race(models.Model):
     wisdom_ability_increase = models.PositiveIntegerField(default=0)
     charisma_ability_increase = models.PositiveIntegerField(default=0)
     
-    language_uuids = models.ManyToManyField(Language, blank=True)
+    languages = MultiSelectField(choices=language_choices, null=True, blank=True)
 
     # class features
     # hit_die = models.CharField(max_length=6, choices=dices_choices, default='d6')
