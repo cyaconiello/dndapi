@@ -1,0 +1,326 @@
+[
+    {
+        "model": "races.race",
+        "pk": 19,
+        "fields": {
+            "race_uuid": "c7446748-d2db-4010-825b-e34ddfe2d638",
+            "name": "Dwarf",
+            "description": "",
+            "size": "medium",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 2,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["dwarvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 20,
+        "fields": {
+            "race_uuid": "5c0db526-d2ed-4a0d-a7e5-9e3b24934d09",
+            "name": "Hill Dwarf",
+            "description": "",
+            "size": "medium",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 2,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 2,
+            "charisma_ability_increase": 0,
+            "languages": ["dwarvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 21,
+        "fields": {
+            "race_uuid": "9ed4d453-4198-47dc-966b-d9c58e2d753e",
+            "name": "Mountain Dwarf",
+            "description": "",
+            "size": "medium",
+            "speed": 25,
+            "strength_ability_increase": 2,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 2,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["dwarvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 22,
+        "fields": {
+            "race_uuid": "056b3bed-c4d8-4b4c-9be3-55befb97e01c",
+            "name": "Elf",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["elvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 23,
+        "fields": {
+            "race_uuid": "52b634d8-7297-460f-a298-cd6daa80b567",
+            "name": "High Elf",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["elvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 24,
+        "fields": {
+            "race_uuid": "d3012f14-d773-4a33-81d6-a6de7ebf3478",
+            "name": "Wood Elf",
+            "description": "",
+            "size": "medium",
+            "speed": 35,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 1,
+            "charisma_ability_increase": 0,
+            "languages": ["elvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 25,
+        "fields": {
+            "race_uuid": "aa57fc96-be1b-435b-9d37-e67a7f07be3f",
+            "name": "Dark Elf",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 1,
+            "languages": ["elvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 26,
+        "fields": {
+            "race_uuid": "0849e11e-e27f-4cce-bf72-605abe062e53",
+            "name": "Halfling",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["halfling,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 27,
+        "fields": {
+            "race_uuid": "12570791-9950-4577-956a-8e3144c331e4",
+            "name": "Lightfoot Halfling",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 1,
+            "languages": ["halfling,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 28,
+        "fields": {
+            "race_uuid": "e0ac90d1-ba06-4189-89c0-e11af6638521",
+            "name": "Stout Halfling",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 2,
+            "constitution_ability_increase": 1,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["halfling,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 29,
+        "fields": {
+            "race_uuid": "83831b15-fbf5-4183-b8b6-ad58c9d0d1dc",
+            "name": "Human",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 1,
+            "dexterity_ability_increase": 1,
+            "constitution_ability_increase": 1,
+            "intelligince_ability_increase": 1,
+            "wisdom_ability_increase": 1,
+            "charisma_ability_increase": 1,
+            "languages": ["common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 30,
+        "fields": {
+            "race_uuid": "4541d749-8674-4192-8ea8-905698349c5e",
+            "name": "Dragonborn",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 2,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 1,
+            "languages": ["draconic,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 31,
+        "fields": {
+            "race_uuid": "bb9ab9f7-92c2-44c4-81bc-fb847250fb85",
+            "name": "Gnome",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 2,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["gnomish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 32,
+        "fields": {
+            "race_uuid": "5ec2fbd9-316f-40b6-8e2c-5cb6f04b3296",
+            "name": "Forest Gnome",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 1,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 2,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["gnomish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 33,
+        "fields": {
+            "race_uuid": "3e72c03b-cfc0-4521-9084-3bae51de1e68",
+            "name": "Rock Gnome",
+            "description": "",
+            "size": "small",
+            "speed": 25,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 1,
+            "intelligince_ability_increase": 2,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["gnomish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 34,
+        "fields": {
+            "race_uuid": "081bbcd1-6568-4860-b6b0-f9fca00fbf4a",
+            "name": "Half-Elf",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 2,
+            "languages": ["elvish,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 35,
+        "fields": {
+            "race_uuid": "e0340acf-77ee-4083-9d6b-eb127d98bd72",
+            "name": "Half-Orc",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 2,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 1,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "languages": ["orc,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 36,
+        "fields": {
+            "race_uuid": "825a16da-7d17-488c-968f-044b339a0c64",
+            "name": "Tiefling",
+            "description": "",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 1,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 2,
+            "languages": ["infernal,common"]
+        }
+    }
+]

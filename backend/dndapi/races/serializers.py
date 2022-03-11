@@ -33,3 +33,11 @@ class RaceCompleteSerializer(RaceBaseSerializer):
             'wisdom_ability_increase',
             'charisma_ability_increase',
         ]
+# """
+# Serializer used for bulk creation of Races
+# """
+# class RaceBulkCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Race
+#         exclude = ['name']
+    

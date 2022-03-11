@@ -79,3 +79,7 @@ creating new apps
 Migrate new model changes
 `python backend/manage.py makemigrations`
 `python backend/manage.py migrate`
+
+To bulk load data
+`python manage.py loaddata ./{json_to_load}.json`
+`python manage.py dumpdata {app_name.model_name} > ./{races}.json`

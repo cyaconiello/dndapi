@@ -18,6 +18,7 @@ language_choices = (
     ('infernal', 'infernal'),
     ('primordial', 'primordial'),
     ('sylvan', 'sylvan'),
+    ('draconic', 'draconic'),
     ('undercommon', 'undercommon'),
 )
 attribute_proficiencies_choicies = (

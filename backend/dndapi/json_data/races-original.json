@@ -1,0 +1,217 @@
+[
+    {
+        "name": "Dwarf",
+        "description": "",
+        "size": "medium",
+        "speed": 25,
+        "constitution_ability_increase": 2,
+        "languages": [
+            "common",
+            "dwarvish"
+        ]
+    },
+    {
+        "name": "Hill Dwarf",
+        "description": "",
+        "size": "medium",
+        "speed": 25,
+        "constitution_ability_increase": 2,
+        "wisdom_ability_increase": 2,
+        "languages": [
+            "common",
+            "dwarvish"
+        ]
+    },
+    {
+        "name": "Mountain Dwarf",
+        "description": "",
+        "size": "medium",
+        "speed": 25,
+        "constitution_ability_increase": 2,
+        "strength_ability_increase": 2,
+        "languages": [
+            "common",
+            "dwarvish"
+        ]
+    },
+    {
+        "name": "Elf",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "dexterity_ability_increase": 2,
+        "languages": [
+            "common",
+            "elvish"
+        ]
+    },
+    {
+        "name": "High Elf",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "dexterity_ability_increase": 2,
+        "intelligence_ability_increase": 1,
+        "languages": [
+            "common",
+            "elvish"
+        ]
+    },
+    {
+        "name": "Wood Elf",
+        "description": "",
+        "size": "medium",
+        "speed": 35,
+        "dexterity_ability_increase": 2,
+        "wisdom_ability_increase": 1,
+        "languages": [
+            "common",
+            "elvish"
+        ]
+    },
+    {
+        "name": "Dark Elf",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "dexterity_ability_increase": 2,
+        "charisma_ability_increase": 1,
+        "languages": [
+            "common",
+            "elvish"
+        ]
+    },
+    {
+        "name": "Halfling",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "dexterity_ability_increase": 2,
+        "intelligence_ability_increase": 1,
+        "languages": [
+            "common",
+            "halfling"
+        ]
+    },
+    {
+        "name": "Lightfoot Halfling",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "dexterity_ability_increase": 2,
+        "charisma_ability_increase": 1,
+        "languages": [
+            "common",
+            "halfling"
+        ]
+    },
+    {
+        "name": "Stout Halfling",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "dexterity_ability_increase": 2,
+        "constitution_ability_increase": 1,
+        "languages": [
+            "common",
+            "halfling"
+        ]
+    },
+    {
+        "name": "Human",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "dexterity_ability_increase": 1,
+        "constitution_ability_increase": 1,
+        "charisma_ability_increase": 1,
+        "wisdom_ability_increase": 1,
+        "strength_ability_increase": 1,
+        "intelligince_ability_increase": 1,
+        "languages": [
+            "common"
+        ]
+    },
+    {
+        "name": "Dragonborn",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "charisma_ability_increase": 1,
+        "strength_ability_increase": 2,
+        "languages": [
+            "common",
+            "draconic"
+        ]
+    },
+    {
+        "name": "Gnome",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "intelligince_ability_increase": 2,
+        "languages": [
+            "common",
+            "gnomish"
+        ]
+    },
+    {
+        "name": "Forest Gnome",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "dexterity_ability_increase": 1,
+        "intelligince_ability_increase": 2,
+        "languages": [
+            "common",
+            "gnomish"
+        ]
+    },
+    {
+        "name": "Rock Gnome",
+        "description": "",
+        "size": "small",
+        "speed": 25,
+        "constitution_ability_increase": 1,
+        "intelligince_ability_increase": 2,
+        "languages": [
+            "common",
+            "gnomish"
+        ]
+    },
+    {
+        "name": "Half-Elf",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "charisma_ability_increase": 2,
+        "languages": [
+            "common",
+            "elvish"
+        ]
+    },
+    {
+        "name": "Half-Orc",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "constitution_ability_increase": 1,
+        "strength_ability_increase": 2,
+        "languages": [
+            "common",
+            "orc"
+        ]
+    },
+    {
+        "name": "Tiefling",
+        "description": "",
+        "size": "medium",
+        "speed": 30,
+        "charisma_ability_increase": 2,
+        "intelligince_ability_increase": 1,
+        "languages": [
+            "common",
+            "infernal"
+        ]
+    }
+]
