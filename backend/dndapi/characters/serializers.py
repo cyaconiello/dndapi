@@ -76,9 +76,7 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
         # save the character to creat an instance
         instance = super().create(validated_data)
         # get the stats based on race/class/prefernce
-        stats = get_character_stat_block_based_on_preference(
-            self.initial_data, validated_data
-        )
+        stats = get_character_stat_block_based_on_preference(validated_data)
         # update the instance stats
         instance.base_strength = stats["base_strength"]
         instance.base_dexterity = stats["base_dexterity"]
