@@ -1,10 +1,12 @@
 from random import randint
 import uuid
 from django.db import models
+from multiselectfield import MultiSelectField
 
 from races.models import Race
 from common.util.choices import (
     genders_choices,
+    attribute_proficiencies_choicies,
     character_generation_stat_preference_choices,
 )
 
@@ -19,8 +21,10 @@ class Character(models.Model):
         choices=character_generation_stat_preference_choices,
         default=character_generation_stat_preference_choices[0][0],
     )
+    other_attribute_increases = MultiSelectField(
+        choices=attribute_proficiencies_choicies, blank=True, null=True, max_choices=2
+    )
 
-    print("Character model loading")
     character_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=120)
     # TODO: refactor to sync with race or to roll for it

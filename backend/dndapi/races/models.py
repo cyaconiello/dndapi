@@ -2,7 +2,10 @@ import uuid
 from django.db import models
 from multiselectfield import MultiSelectField
 
-from common.util.choices import size_choices, language_choices
+from common.util.choices import (
+    size_choices,
+    language_choices,
+)
 
 
 class Race(models.Model):

@@ -15,9 +15,14 @@ def get_a_random_race_for_character() -> Race:
 
 
 def get_character_stat_block_based_on_preference(
-    race: Race, character_class, preference: str
+    request_data, validated_data
 ) -> dict[str, int]:
     stat_block = create_stat_block_for_character()
+    race = validated_data["race"]
+    # TODO: update for class
+    character_class = None  # validated_data["character_class"]
+    preference = validated_data["character_stat_preference"]
+
     stats = {
         "base_constitution": 0,
         "base_strength": 0,
@@ -33,7 +38,9 @@ def get_character_stat_block_based_on_preference(
     ):
         if preference == "race_weighted_perferred":
             weighted = True
-        stats = sort_stats_by_racial_strengths(race, stat_block, stats, weighted)
+        stats = sort_stats_by_racial_strengths(
+            validated_data, race, character_class, stat_block, stats, weighted
+        )
     elif character_class and (
         preference == "class_weighted_perferred"
         or preference == "class_weighted_balanced"
@@ -45,7 +52,6 @@ def get_character_stat_block_based_on_preference(
         pass
     else:
         stats = random_assorted_stats(stat_block, stats)
-    print(stats)
     return stats
 
 
@@ -78,19 +84,49 @@ def sort_stats_by_class_strengths(
 
 
 def sort_stats_by_racial_strengths(
-    race: Race, stat_block: list[int], stats: dict[str, int], perferred: bool
+    validated_data,
+    race: Race,
+    character_class,
+    stat_block: list[int],
+    stats: dict[str, int],
+    perferred: bool,
 ) -> dict[str, int]:
+    # human variant/half-elves get additional attribute stats that can be picked
+    # here we determine if there is user input for these attributes
+    other_attr_increases = []
+    if race.name.lower() == "half-elf" or race.name.lower() == "human variant":
+        if "other_attribute_increases" in validated_data:
+            for attr in validated_data["other_attribute_increases"]:
+                if len(other_attr_increases) < race.additional_ability_increases:
+                    other_attr_increases.append(attr)
+                    stats[f"base_{attr}"] = 1
+                    print(f"actual addition base_{attr}")
+
+    stats["base_strength"] += race.strength_ability_increase
+    stats["base_dexterity"] += race.dexterity_ability_increase
+    stats["base_constitution"] += race.constitution_ability_increase
+    stats["base_intelligence"] += race.intelligince_ability_increase
+    stats["base_wisdom"] += race.wisdom_ability_increase
+    stats["base_charisma"] += race.charisma_ability_increase
+
+    # human variant/half-elves get additional attribute stats that can be picked
+    # or if we need to randomly assign these attributes on character generation
+    # TODO: maybe default to class proficencies currently its random
+    if race.name.lower() == "half-elf" or race.name.lower() == "human variant":
+        number_of_additional_attrs_to_get = race.additional_ability_increases - len(
+            other_attr_increases
+        )
+        if number_of_additional_attrs_to_get > 0:
+            while number_of_additional_attrs_to_get > 0:
+                choices = [stat for stat in stats if stats[stat] == 0]
+                attr_to_increase = choices[random.randint(0, len(choices) - 1)]
+                print(f"random attr {attr_to_increase}")
+                other_attr_increases.append(attr_to_increase.replace("base_", ""))
+                stats[attr_to_increase] += 1
+                number_of_additional_attrs_to_get += -1
+
     stat_block.sort()
     stat_block.reverse()
-    # TODO: adding in ability to increase a ability score field for
-    # half elf 2x other ability score +1
-    stats["base_strength"] = (int(race.strength_ability_increase),)
-    stats["base_dexterity"] = (int(race.dexterity_ability_increase),)
-    stats["base_constitution"] = (int(race.constitution_ability_increase),)
-    stats["base_intelligence"] = (int(race.intelligince_ability_increase),)
-    stats["base_wisdom"] = (int(race.wisdom_ability_increase),)
-    stats["base_charisma"] = (int(race.charisma_ability_increase),)
-
     stats = dict(sorted(stats.items(), key=lambda item: item[1], reverse=perferred))
     for idx, stat in enumerate(stat_block):
         stats[list(stats)[idx]] = stat

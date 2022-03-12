@@ -1,14 +1,15 @@
 from rest_framework import serializers
 
 from common.util.utils import (
+    CustomMultipleChoiceField,
     stat_mod_calculation,
     get_character_attributes,
     fetch_race_object_by_name_or_uuid,
     get_character_stat_block_based_on_preference,
-    create_stat_block_for_character,
     get_a_random_race_for_character,
     # get_a_random_class_for_character,
 )
+from common.util.choices import attribute_proficiencies_choicies
 from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
 from characters.models import Character
 
@@ -19,6 +20,10 @@ Serializer used for creating/updating characters
 
 class CharacterBaseSerializer(serializers.ModelSerializer):
     race = serializers.SlugRelatedField(slug_field="race_uuid", read_only=True)
+    other_attribute_increases = CustomMultipleChoiceField(
+        choices=attribute_proficiencies_choicies, required=False
+    )
+
     # Character.objects.all().delete()
     class Meta:
         model = Character
@@ -30,6 +35,7 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             "background",
             "race",
             "character_stat_preference",
+            "other_attribute_increases",
             "base_strength",
             "base_dexterity",
             "base_constitution",
@@ -55,13 +61,23 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
         else:
             # validated_data["class"] = char_class.first()
             pass
+        # TODO:
+        # throw validation error if you pass more than 2 other attributes
+        # or non unique or if the race doesnt has self picked attributes
+        if (
+            validated_data["race"].name.lower() == "half-elf"
+            or validated_data["race"].name.lower() == "human variant"
+        ):
+            validated_data["other_attribute_increases"] = list(
+                validated_data["other_attribute_increases"]
+            )[:2]
+        else:
+            validated_data["other_attribute_increases"] = []
         # save the character to creat an instance
         instance = super().create(validated_data)
         # get the stats based on race/class/prefernce
         stats = get_character_stat_block_based_on_preference(
-            validated_data["race"],
-            char_class,
-            instance.character_stat_preference,
+            self.initial_data, validated_data
         )
         # update the instance stats
         instance.base_strength = stats["base_strength"]

@@ -39,4 +39,5 @@ class RaceCompleteSerializer(RaceBaseSerializer):
             "wisdom_ability_increase",
             "charisma_ability_increase",
             "additional_ability_increases",
+            "other_attribute_increases",
         ]
