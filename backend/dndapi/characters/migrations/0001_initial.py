@@ -10,26 +10,67 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('races', '0001_initial'),
+        ("races", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Character',
+            name="Character",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('character_uuid', models.UUIDField(default=uuid.uuid4, editable=False)),
-                ('name', models.CharField(max_length=120)),
-                ('age', models.PositiveIntegerField(default=1)),
-                ('gender', models.CharField(choices=[('male', 'male'), ('female', 'female')], default='male', max_length=6)),
-                ('background', models.TextField(blank=True)),
-                ('base_strength', models.PositiveIntegerField(default=8, editable=False)),
-                ('base_dexterity', models.PositiveIntegerField(default=12, editable=False)),
-                ('base_constitution', models.PositiveIntegerField(default=12, editable=False)),
-                ('base_intelligence', models.PositiveIntegerField(default=13, editable=False)),
-                ('base_wisdom', models.PositiveIntegerField(default=15, editable=False)),
-                ('base_charisma', models.PositiveIntegerField(default=15, editable=False)),
-                ('race', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='races.race')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "character_uuid",
+                    models.UUIDField(default=uuid.uuid4, editable=False),
+                ),
+                ("name", models.CharField(max_length=120)),
+                ("age", models.PositiveIntegerField(default=1)),
+                (
+                    "gender",
+                    models.CharField(
+                        choices=[("male", "male"), ("female", "female")],
+                        default="male",
+                        max_length=6,
+                    ),
+                ),
+                ("background", models.TextField(blank=True)),
+                (
+                    "base_strength",
+                    models.PositiveIntegerField(default=8, editable=False),
+                ),
+                (
+                    "base_dexterity",
+                    models.PositiveIntegerField(default=12, editable=False),
+                ),
+                (
+                    "base_constitution",
+                    models.PositiveIntegerField(default=12, editable=False),
+                ),
+                (
+                    "base_intelligence",
+                    models.PositiveIntegerField(default=13, editable=False),
+                ),
+                (
+                    "base_wisdom",
+                    models.PositiveIntegerField(default=15, editable=False),
+                ),
+                (
+                    "base_charisma",
+                    models.PositiveIntegerField(default=15, editable=False),
+                ),
+                (
+                    "race",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="races.race"
+                    ),
+                ),
             ],
         ),
     ]

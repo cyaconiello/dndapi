@@ -1,34 +1,41 @@
 from rest_framework import serializers
 
 from common.util.utils import (
-    stat_mod_calculation, get_character_attributes, fetch_race_object_by_name_or_uuid,
-    get_character_stat_block_based_on_preference, create_stat_block_for_character,
-    get_a_random_race_for_character, get_character_attribute_preference,
-    get_a_random_class_for_character
+    stat_mod_calculation,
+    get_character_attributes,
+    fetch_race_object_by_name_or_uuid,
+    get_character_stat_block_based_on_preference,
+    create_stat_block_for_character,
+    get_a_random_race_for_character,
+    # get_a_random_class_for_character,
 )
 from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
 from characters.models import Character
+
 """
 Serializer used for creating/updating characters
 """
+
+
 class CharacterBaseSerializer(serializers.ModelSerializer):
-    race = serializers.SlugRelatedField(slug_field='race_uuid', read_only=True)
+    race = serializers.SlugRelatedField(slug_field="race_uuid", read_only=True)
     # Character.objects.all().delete()
     class Meta:
         model = Character
         fields = [
-            'character_uuid',
-            'name',
-            'age',
-            'gender',
-            'background',
-            'race',
-            'base_strength',
-            'base_dexterity',
-            'base_constitution',
-            'base_intelligence',
-            'base_wisdom',
-            'base_charisma',
+            "character_uuid",
+            "name",
+            "age",
+            "gender",
+            "background",
+            "race",
+            "character_stat_preference",
+            "base_strength",
+            "base_dexterity",
+            "base_constitution",
+            "base_intelligence",
+            "base_wisdom",
+            "base_charisma",
         ]
 
     def create(self, validated_data):
@@ -38,31 +45,26 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
         race = fetch_race_object_by_name_or_uuid(self.initial_data)
         # create random attribute stat list
         stat_block = create_stat_block_for_character()
-        # get the prefernce from user
-        preference = get_character_attribute_preference(self.initial_data)
         # if there is no race provided get a random race
         if not race:
-            validated_data['race'] = get_a_random_race_for_character()
+            validated_data["race"] = get_a_random_race_for_character()
         else:
-            validated_data['race'] = race.first()
-        if not char_class:
-            validated_data['class'] = get_a_random_class_for_character()
-        else:
-            validated_data['class'] = char_class.first()
-        stats = get_character_stat_block_based_on_preference(validated_data['race'], char_class, stat_block, preference)
-        
+            validated_data["race"] = race.first()
+        # if there is no class provided get a random class
+        # if not char_class:
+        #     validated_data["class"] = get_a_random_class_for_character()
+        # else:
+        #     validated_data["class"] = char_class.first()
         instance = super().create(validated_data)
-           
-        instance.base_strength = stats['base_strength']
-        instance.base_dexterity = stats['base_dexterity']
-        instance.base_constitution = stats['base_constitution']
-        instance.base_wisdom = stats['base_wisdom']
-        instance.base_intelligence = stats['base_intelligence']
-        instance.base_charisma = stats['base_charisma']
-        # stat_block.sort()
-        # print(stat_block)
-        # print(len(stat_block))
-        # print(stat_block[len(stat_block)-1])
+        stats = get_character_stat_block_based_on_preference(
+            validated_data["race"], char_class, stat_block, instance.character_stat_preference
+        )
+        instance.base_strength = stats["base_strength"]
+        instance.base_dexterity = stats["base_dexterity"]
+        instance.base_constitution = stats["base_constitution"]
+        instance.base_wisdom = stats["base_wisdom"]
+        instance.base_intelligence = stats["base_intelligence"]
+        instance.base_charisma = stats["base_charisma"]
         instance.save()
         return instance
 
@@ -72,27 +74,30 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             instance.race = race.first()
         return super().update(instance, validated_data)
 
+
 """
 Serializer used to compile the entire character into a single endpoint call
 used for GET on List/Details
 """
+
+
 class CharacterCompiledSerializer(CharacterBaseSerializer):
     attributes = serializers.SerializerMethodField(read_only=True)
     saving_throws = serializers.SerializerMethodField(read_only=True)
     race = RaceBaseSerializer(read_only=True)
-    
+
     class Meta:
         model = Character
-        read_only_fields = ('bar',)
+        read_only_fields = ("bar",)
         fields = [
-            'character_uuid',
-            'name',
-            'age',
-            'gender',
-            'background',
-            'race',
-            'attributes',
-            'saving_throws',
+            "character_uuid",
+            "name",
+            "age",
+            "gender",
+            "background",
+            "race",
+            "attributes",
+            "saving_throws",
         ]
 
     def get_attributes(self, obj: Character):
@@ -110,5 +115,3 @@ class CharacterCompiledSerializer(CharacterBaseSerializer):
             for a in saves:
                 saves[a] = stat_mod_calculation(saves[a])
         return saves
-
-    

@@ -7,13 +7,35 @@ import multiselectfield.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('races', '0001_initial'),
+        ("races", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='race',
-            name='languages',
-            field=multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('common', 'common'), ('dwarvish', 'dwarvish'), ('elvish', 'elvish'), ('giant', 'giant'), ('gnomish', 'gnomish'), ('goblin', 'goblin'), ('halfling', 'halfling'), ('orc', 'orc'), ('abyssal', 'abyssal'), ('celestial', 'celestial'), ('deep speech', 'deep speech'), ('infernal', 'infernal'), ('primordial', 'primordial'), ('sylvan', 'sylvan'), ('draconic', 'draconic'), ('undercommon', 'undercommon')], max_length=134, null=True),
+            model_name="race",
+            name="languages",
+            field=multiselectfield.db.fields.MultiSelectField(
+                blank=True,
+                choices=[
+                    ("common", "common"),
+                    ("dwarvish", "dwarvish"),
+                    ("elvish", "elvish"),
+                    ("giant", "giant"),
+                    ("gnomish", "gnomish"),
+                    ("goblin", "goblin"),
+                    ("halfling", "halfling"),
+                    ("orc", "orc"),
+                    ("abyssal", "abyssal"),
+                    ("celestial", "celestial"),
+                    ("deep speech", "deep speech"),
+                    ("infernal", "infernal"),
+                    ("primordial", "primordial"),
+                    ("sylvan", "sylvan"),
+                    ("draconic", "draconic"),
+                    ("undercommon", "undercommon"),
+                ],
+                max_length=134,
+                null=True,
+            ),
         ),
     ]

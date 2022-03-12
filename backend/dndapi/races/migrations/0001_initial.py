@@ -9,26 +9,80 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Race',
+            name="Race",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('race_uuid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('name', models.CharField(max_length=120, unique=True)),
-                ('description', models.TextField(blank=True)),
-                ('size', models.CharField(choices=[('tiny', 'tiny'), ('small', 'small'), ('medium', 'medium'), ('large', 'large'), ('huge', 'huge'), ('gargantuan', 'gargantuan')], default='medium', max_length=10)),
-                ('speed', models.PositiveIntegerField(default=30)),
-                ('strength_ability_increase', models.PositiveIntegerField(default=0)),
-                ('dexterity_ability_increase', models.PositiveIntegerField(default=0)),
-                ('constitution_ability_increase', models.PositiveIntegerField(default=0)),
-                ('intelligince_ability_increase', models.PositiveIntegerField(default=0)),
-                ('wisdom_ability_increase', models.PositiveIntegerField(default=0)),
-                ('charisma_ability_increase', models.PositiveIntegerField(default=0)),
-                ('languages', multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('common', 'common'), ('dwarvish', 'dwarvish'), ('elvish', 'elvish'), ('giant', 'giant'), ('gnomish', 'gnomish'), ('goblin', 'goblin'), ('halfling', 'halfling'), ('orc', 'orc'), ('abyssal', 'abyssal'), ('celestial', 'celestial'), ('deep speech', 'deep speech'), ('infernal', 'infernal'), ('primordial', 'primordial'), ('sylvan', 'sylvan'), ('undercommon', 'undercommon')], max_length=125, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "race_uuid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                ("name", models.CharField(max_length=120, unique=True)),
+                ("description", models.TextField(blank=True)),
+                (
+                    "size",
+                    models.CharField(
+                        choices=[
+                            ("tiny", "tiny"),
+                            ("small", "small"),
+                            ("medium", "medium"),
+                            ("large", "large"),
+                            ("huge", "huge"),
+                            ("gargantuan", "gargantuan"),
+                        ],
+                        default="medium",
+                        max_length=10,
+                    ),
+                ),
+                ("speed", models.PositiveIntegerField(default=30)),
+                ("strength_ability_increase", models.PositiveIntegerField(default=0)),
+                ("dexterity_ability_increase", models.PositiveIntegerField(default=0)),
+                (
+                    "constitution_ability_increase",
+                    models.PositiveIntegerField(default=0),
+                ),
+                (
+                    "intelligince_ability_increase",
+                    models.PositiveIntegerField(default=0),
+                ),
+                ("wisdom_ability_increase", models.PositiveIntegerField(default=0)),
+                ("charisma_ability_increase", models.PositiveIntegerField(default=0)),
+                (
+                    "languages",
+                    multiselectfield.db.fields.MultiSelectField(
+                        blank=True,
+                        choices=[
+                            ("common", "common"),
+                            ("dwarvish", "dwarvish"),
+                            ("elvish", "elvish"),
+                            ("giant", "giant"),
+                            ("gnomish", "gnomish"),
+                            ("goblin", "goblin"),
+                            ("halfling", "halfling"),
+                            ("orc", "orc"),
+                            ("abyssal", "abyssal"),
+                            ("celestial", "celestial"),
+                            ("deep speech", "deep speech"),
+                            ("infernal", "infernal"),
+                            ("primordial", "primordial"),
+                            ("sylvan", "sylvan"),
+                            ("undercommon", "undercommon"),
+                        ],
+                        max_length=125,
+                        null=True,
+                    ),
+                ),
             ],
         ),
     ]

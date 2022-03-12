@@ -4,6 +4,7 @@ from multiselectfield import MultiSelectField
 
 from common.util.choices import size_choices, language_choices
 
+
 class Race(models.Model):
     """
     Race informantion
@@ -15,14 +16,14 @@ class Race(models.Model):
     size = models.CharField(max_length=10, choices=size_choices, default="medium")
     speed = models.PositiveIntegerField(default=30)
     # item_proficiencies =
-    
+
     strength_ability_increase = models.PositiveIntegerField(default=0)
     dexterity_ability_increase = models.PositiveIntegerField(default=0)
     constitution_ability_increase = models.PositiveIntegerField(default=0)
     intelligince_ability_increase = models.PositiveIntegerField(default=0)
     wisdom_ability_increase = models.PositiveIntegerField(default=0)
     charisma_ability_increase = models.PositiveIntegerField(default=0)
-    
+
     languages = MultiSelectField(choices=language_choices, null=True, blank=True)
 
     # class features

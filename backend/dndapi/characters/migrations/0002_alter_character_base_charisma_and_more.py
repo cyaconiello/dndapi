@@ -6,38 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('characters', '0001_initial'),
+        ("characters", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='character',
-            name='base_charisma',
+            model_name="character",
+            name="base_charisma",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='character',
-            name='base_constitution',
+            model_name="character",
+            name="base_constitution",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='character',
-            name='base_dexterity',
+            model_name="character",
+            name="base_dexterity",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='character',
-            name='base_intelligence',
+            model_name="character",
+            name="base_intelligence",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='character',
-            name='base_strength',
+            model_name="character",
+            name="base_strength",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='character',
-            name='base_wisdom',
+            model_name="character",
+            name="base_wisdom",
             field=models.PositiveIntegerField(default=0),
         ),
     ]

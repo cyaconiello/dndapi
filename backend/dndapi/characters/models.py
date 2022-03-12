@@ -1,20 +1,30 @@
+from random import randint
 import uuid
 from django.db import models
 
 from races.models import Race
-from common.util.utils import roll_dice, drop_dice
-from common.util.choices import genders_choices
+from common.util.choices import (
+    genders_choices,
+    character_generation_stat_preference_choices,
+)
 
 
 class Character(models.Model):
     """
     Character information
     """
-    print('Character model loading')
+
+    character_stat_preference = models.CharField(
+        max_length=24,
+        choices=character_generation_stat_preference_choices,
+        default=character_generation_stat_preference_choices[0][0],
+    )
+
+    print("Character model loading")
     character_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=120)
-    age = models.PositiveIntegerField(default=1)
-    gender = models.CharField(max_length=6, choices=genders_choices, default="male")
+    age = models.PositiveIntegerField(default=randint(10, 30))
+    gender = models.CharField(max_length=6, choices=genders_choices, default=genders_choices[randint(0,1)][0])
     background = models.TextField(blank=True)
 
     base_strength = models.PositiveIntegerField(editable=False, default=0)
