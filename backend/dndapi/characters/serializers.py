@@ -13,10 +13,6 @@ from common.util.choices import attribute_proficiencies_choicies
 from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
 from characters.models import Character
 
-"""
-Serializer used for creating/updating characters
-"""
-
 
 class CharacterBaseSerializer(serializers.ModelSerializer):
     race = serializers.SlugRelatedField(slug_field="race_uuid", read_only=True)
@@ -95,12 +91,6 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             instance.race = race.first()
         # TODO: multiclass?
         return super().update(instance, validated_data)
-
-
-"""
-Serializer used to compile the entire character into a single endpoint call
-used for GET on List/Details
-"""
 
 
 class CharacterCompiledSerializer(CharacterBaseSerializer):

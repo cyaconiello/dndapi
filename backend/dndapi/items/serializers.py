@@ -4,11 +4,6 @@ from items.models import Item, Weapon
 from common.util.utils import CustomMultipleChoiceField
 from common.util.choices import damage_type_choices, weapon_properties_choices
 
-"""
-Serializer used for returning the items
-"""
-
-
 class ItemBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
@@ -22,11 +17,6 @@ class ItemBaseSerializer(serializers.ModelSerializer):
             "currency_denomination",
             "weight",
         ]
-
-
-"""
-Serializer used for returning the Weapons
-"""
 
 
 class WeaponSerializer(ItemBaseSerializer, serializers.HyperlinkedModelSerializer):

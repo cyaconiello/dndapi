@@ -12,10 +12,6 @@ from common.util.choices import (
 
 
 class Character(models.Model):
-    """
-    Character information
-    """
-
     character_stat_preference = models.CharField(
         max_length=24,
         choices=character_generation_stat_preference_choices,

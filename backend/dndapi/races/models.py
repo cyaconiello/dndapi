@@ -9,10 +9,6 @@ from common.util.choices import (
 
 
 class Race(models.Model):
-    """
-    Race informantion
-    """
-
     race_uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     name = models.CharField(max_length=120, unique=True)
     description = models.TextField(blank=True)

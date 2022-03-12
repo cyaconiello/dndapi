@@ -7,6 +7,4 @@ from races.views import RaceDeatailsRetrieveUpdateDestroyView, RaceListCreateVie
 urlpatterns = [
     path("", RaceListCreateView.as_view()),
     path("<uuid:race_uuid>/", RaceDeatailsRetrieveUpdateDestroyView.as_view()),
-    # path("bulk-create/", RaceListView.as_view()),
-    # path("bulk-delete/", RaceDeleteView.as_view()),
 ]

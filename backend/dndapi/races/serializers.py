@@ -4,10 +4,6 @@ from common.util.utils import CustomMultipleChoiceField
 from common.util.choices import language_choices
 from races.models import Race
 
-"""
-Serializer used for returning the entire character
-"""
-
 
 class RaceBaseSerializer(serializers.ModelSerializer):
     languages = CustomMultipleChoiceField(choices=language_choices, required=False)
@@ -21,11 +17,6 @@ class RaceBaseSerializer(serializers.ModelSerializer):
             "speed",
             "languages",
         ]
-
-
-"""
-Serializer used for GET/PUT/POST for Races
-"""
 
 
 class RaceCompleteSerializer(RaceBaseSerializer):
