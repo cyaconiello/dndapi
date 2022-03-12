@@ -1,4 +1,10 @@
 # characters
+character_generation_stat_preference = {
+    'random': 'random',
+    'race_weighted_perferred': 'race_weighted_perferred',
+    'race_weighted_balanced': 'race_weighted_balanced',
+    'class_weighted_perferred': 'class_weighted_perferred',
+}
 genders_choices = (
     ("male", "male"),
     ("female", "female"),
