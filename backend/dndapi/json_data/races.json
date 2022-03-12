@@ -14,6 +14,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["dwarvish,common"]
         }
     },
@@ -32,6 +33,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 2,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["dwarvish,common"]
         }
     },
@@ -50,6 +52,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["dwarvish,common"]
         }
     },
@@ -68,6 +71,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["elvish,common"]
         }
     },
@@ -86,6 +90,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["elvish,common"]
         }
     },
@@ -104,6 +109,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 1,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["elvish,common"]
         }
     },
@@ -122,6 +128,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 1,
+            "additional_ability_increases": 0,
             "languages": ["elvish,common"]
         }
     },
@@ -140,6 +147,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["halfling,common"]
         }
     },
@@ -158,6 +166,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 1,
+            "additional_ability_increases": 0,
             "languages": ["halfling,common"]
         }
     },
@@ -176,6 +185,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["halfling,common"]
         }
     },
@@ -194,6 +204,7 @@
             "intelligince_ability_increase": 1,
             "wisdom_ability_increase": 1,
             "charisma_ability_increase": 1,
+            "additional_ability_increases": 0,
             "languages": ["common"]
         }
     },
@@ -212,6 +223,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 1,
+            "additional_ability_increases": 0,
             "languages": ["draconic,common"]
         }
     },
@@ -230,6 +242,7 @@
             "intelligince_ability_increase": 2,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["gnomish,common"]
         }
     },
@@ -248,6 +261,7 @@
             "intelligince_ability_increase": 2,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["gnomish,common"]
         }
     },
@@ -266,6 +280,7 @@
             "intelligince_ability_increase": 2,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["gnomish,common"]
         }
     },
@@ -284,6 +299,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 2,
+            "additional_ability_increases": 2,
             "languages": ["elvish,common"]
         }
     },
@@ -302,6 +318,7 @@
             "intelligince_ability_increase": 0,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 0,
+            "additional_ability_increases": 0,
             "languages": ["orc,common"]
         }
     },
@@ -320,7 +337,26 @@
             "intelligince_ability_increase": 1,
             "wisdom_ability_increase": 0,
             "charisma_ability_increase": 2,
+            "additional_ability_increases": 0,
             "languages": ["infernal,common"]
+        }
+    },
+    {
+        "model": "races.race",
+        "pk": 37,
+        "fields": {
+            "race_uuid": "19669698-c225-40fb-99de-9fdedd0fa138",
+            "name": "Human Variant",
+            "size": "medium",
+            "speed": 30,
+            "strength_ability_increase": 0,
+            "dexterity_ability_increase": 0,
+            "constitution_ability_increase": 0,
+            "intelligince_ability_increase": 0,
+            "wisdom_ability_increase": 0,
+            "charisma_ability_increase": 0,
+            "additional_ability_increases": 2,
+            "languages": ["common"]
         }
     }
 ]

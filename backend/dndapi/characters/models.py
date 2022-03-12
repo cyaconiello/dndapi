@@ -23,8 +23,11 @@ class Character(models.Model):
     print("Character model loading")
     character_uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=120)
+    # TODO: refactor to sync with race or to roll for it
     age = models.PositiveIntegerField(default=randint(10, 30))
-    gender = models.CharField(max_length=6, choices=genders_choices, default=genders_choices[randint(0,1)][0])
+    gender = models.CharField(
+        max_length=6, choices=genders_choices, default=genders_choices[randint(0, 1)][0]
+    )
     background = models.TextField(blank=True)
 
     base_strength = models.PositiveIntegerField(editable=False, default=0)

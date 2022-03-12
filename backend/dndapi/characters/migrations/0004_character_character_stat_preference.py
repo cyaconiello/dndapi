@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('characters', '0003_alter_character_base_charisma_and_more'),
+        ("characters", "0003_alter_character_base_charisma_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='character',
-            name='character_stat_preference',
-            field=models.CharField(choices=[('random', 'random'), ('race_weighted_perferred', 'race_weighted_perferred'), ('race_weighted_balanced', 'race_weighted_balanced'), ('class_weighted_perferred', 'class_weighted_perferred')], default='random', max_length=24),
+            model_name="character",
+            name="character_stat_preference",
+            field=models.CharField(
+                choices=[
+                    ("random", "random"),
+                    ("race_weighted_perferred", "race_weighted_perferred"),
+                    ("race_weighted_balanced", "race_weighted_balanced"),
+                    ("class_weighted_perferred", "class_weighted_perferred"),
+                ],
+                default="random",
+                max_length=24,
+            ),
         ),
     ]

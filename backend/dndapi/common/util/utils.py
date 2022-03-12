@@ -9,15 +9,15 @@ def get_a_random_class_for_character():
 
 
 def get_a_random_race_for_character() -> Race:
-    # totally rand race
     race_obj_count = Race.objects.all().count()
     race = Race.objects.all()[random.randint(0, race_obj_count - 1)]
     return race
 
 
 def get_character_stat_block_based_on_preference(
-    race: Race, character_class, stat_block: list[int], preference: str
+    race: Race, character_class, preference: str
 ) -> dict[str, int]:
+    stat_block = create_stat_block_for_character()
     stats = {
         "base_constitution": 0,
         "base_strength": 0,

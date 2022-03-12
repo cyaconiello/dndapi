@@ -39,39 +39,47 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        # TODO: get class for character
-        char_class = None
         # get race from user input
         race = fetch_race_object_by_name_or_uuid(self.initial_data)
-        # create random attribute stat list
-        stat_block = create_stat_block_for_character()
+        # TODO: get class for character
+        char_class = None
         # if there is no race provided get a random race
         if not race:
             validated_data["race"] = get_a_random_race_for_character()
         else:
             validated_data["race"] = race.first()
         # if there is no class provided get a random class
-        # if not char_class:
-        #     validated_data["class"] = get_a_random_class_for_character()
-        # else:
-        #     validated_data["class"] = char_class.first()
+        if not char_class:
+            # validated_data["class"] = get_a_random_class_for_character()
+            pass
+        else:
+            # validated_data["class"] = char_class.first()
+            pass
+        # save the character to creat an instance
         instance = super().create(validated_data)
+        # get the stats based on race/class/prefernce
         stats = get_character_stat_block_based_on_preference(
-            validated_data["race"], char_class, stat_block, instance.character_stat_preference
+            validated_data["race"],
+            char_class,
+            instance.character_stat_preference,
         )
+        # update the instance stats
         instance.base_strength = stats["base_strength"]
         instance.base_dexterity = stats["base_dexterity"]
         instance.base_constitution = stats["base_constitution"]
         instance.base_wisdom = stats["base_wisdom"]
         instance.base_intelligence = stats["base_intelligence"]
         instance.base_charisma = stats["base_charisma"]
+        # resave the instance
         instance.save()
         return instance
 
     def update(self, instance: Character, validated_data):
+        # TODO: disallow updating the race
         race = fetch_race_object_by_name_or_uuid(self.initial_data)
         if race:
             instance.race = race.first()
+        # TODO: multiclass?
         return super().update(instance, validated_data)
 
 
