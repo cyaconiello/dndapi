@@ -14,13 +14,8 @@ def get_a_random_race_for_character() -> Race:
     return race
 
 
-def get_character_stat_block_based_on_preference(
-    request_data, validated_data
-) -> dict[str, int]:
+def get_character_stat_block_based_on_preference(validated_data) -> dict[str, int]:
     stat_block = create_stat_block_for_character()
-    race = validated_data["race"]
-    # TODO: update for class
-    character_class = None  # validated_data["character_class"]
     preference = validated_data["character_stat_preference"]
 
     stats = {
@@ -39,16 +34,16 @@ def get_character_stat_block_based_on_preference(
         if preference == "race_weighted_perferred":
             weighted = True
         stats = sort_stats_by_racial_strengths(
-            validated_data, race, character_class, stat_block, stats, weighted
+            validated_data, stat_block, stats, weighted
         )
-    elif character_class and (
+    elif (
         preference == "class_weighted_perferred"
         or preference == "class_weighted_balanced"
     ):
         if preference == "class_weighted_perferred":
             weighted = True
         print("generating stats by class")
-        stats = sort_stats_by_class_strengths(character_class, stat_block, weighted)
+        stats = sort_stats_by_class_strengths(validated_data, stat_block, weighted)
         pass
     else:
         stats = random_assorted_stats(stat_block, stats)
@@ -64,8 +59,12 @@ def random_assorted_stats(
 
 
 def sort_stats_by_class_strengths(
-    char_class, stat_block: list[int], stats: dict[str, int], perferred: bool
+    validated_data, stat_block: list[int], stats: dict[str, int], perferred: bool
 ) -> dict[str, int]:
+    # character race
+    race = validated_data["race"]
+    # TODO: update for class
+    character_class = None  # validated_data["character_class"]
     stat_block.sort()
     stat_block.reverse()
     print(stat_block)
@@ -85,12 +84,14 @@ def sort_stats_by_class_strengths(
 
 def sort_stats_by_racial_strengths(
     validated_data,
-    race: Race,
-    character_class,
     stat_block: list[int],
     stats: dict[str, int],
     perferred: bool,
 ) -> dict[str, int]:
+    # character race
+    race = validated_data["race"]
+    # TODO: update for class
+    character_class = None  # validated_data["character_class"]
     # human variant/half-elves get additional attribute stats that can be picked
     # here we determine if there is user input for these attributes
     other_attr_increases = []
