@@ -11,11 +11,13 @@ from common.util.utils import (
 )
 from common.util.choices import attribute_proficiencies_choicies
 from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
+from character_classes.serializers import CharacterClassBaseSerializer
 from characters.models import Character
 
 
 class CharacterBaseSerializer(serializers.ModelSerializer):
     race = serializers.SlugRelatedField(slug_field="race_uuid", read_only=True)
+    character_class = serializers.SlugRelatedField(slug_field="character_class_uuid", read_only=True)
     other_attribute_increases = CustomMultipleChoiceField(
         choices=attribute_proficiencies_choicies, required=False
     )
@@ -29,7 +31,11 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             "age",
             "gender",
             "background",
+            "level",
+            "experience",
+            "max_hp",
             "race",
+            "character_class",
             "character_stat_preference",
             "other_attribute_increases",
             "base_strength",
@@ -97,6 +103,7 @@ class CharacterCompiledSerializer(CharacterBaseSerializer):
     attributes = serializers.SerializerMethodField(read_only=True)
     saving_throws = serializers.SerializerMethodField(read_only=True)
     race = RaceBaseSerializer(read_only=True)
+    character_class = CharacterClassBaseSerializer(read_only=True)
 
     class Meta:
         model = Character
@@ -106,8 +113,12 @@ class CharacterCompiledSerializer(CharacterBaseSerializer):
             "name",
             "age",
             "gender",
+            "level",
+            "experience",
+            "max_hp",
             "background",
             "race",
+            "character_class",
             "attributes",
             "saving_throws",
         ]

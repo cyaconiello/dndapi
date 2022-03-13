@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from multiselectfield import MultiSelectField
 
+from character_classes.models import CharacterClass
 from races.models import Race
 from common.util.choices import (
     genders_choices,
@@ -29,7 +30,10 @@ class Character(models.Model):
         max_length=6, choices=genders_choices, default=genders_choices[randint(0, 1)][0]
     )
     background = models.TextField(blank=True)
-
+    level = models.PositiveIntegerField(default=1)
+    experience = models.PositiveIntegerField(default=0)
+    max_hp = models.PositiveIntegerField(default=0)
+    
     base_strength = models.PositiveIntegerField(editable=False, default=0)
     base_dexterity = models.PositiveIntegerField(editable=False, default=0)
     base_constitution = models.PositiveIntegerField(editable=False, default=0)
@@ -38,6 +42,7 @@ class Character(models.Model):
     base_charisma = models.PositiveIntegerField(editable=False, default=0)
 
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
+    character_class = models.ForeignKey(CharacterClass, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
