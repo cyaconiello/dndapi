@@ -5,9 +5,10 @@ from common.util.utils import (
     stat_mod_calculation,
     get_character_attributes,
     fetch_race_object_by_name_or_uuid,
+    fetch_class_object_by_name_or_uuid,
     get_character_stat_block_based_on_preference,
     get_a_random_race_for_character,
-    # get_a_random_class_for_character,
+    get_a_random_class_for_character,
 )
 from common.util.choices import attribute_proficiencies_choicies
 from races.serializers import RaceBaseSerializer, RaceCompleteSerializer
@@ -49,8 +50,8 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # get race from user input
         race = fetch_race_object_by_name_or_uuid(self.initial_data)
-        # TODO: get class for character
-        char_class = None
+        # get class for character
+        char_class = fetch_class_object_by_name_or_uuid(self.initial_data)
         # if there is no race provided get a random race
         if not race:
             validated_data["race"] = get_a_random_race_for_character()
@@ -58,11 +59,9 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             validated_data["race"] = race.first()
         # if there is no class provided get a random class
         if not char_class:
-            # validated_data["class"] = get_a_random_class_for_character()
-            pass
+            validated_data["character_class"] = get_a_random_class_for_character()
         else:
-            # validated_data["class"] = char_class.first()
-            pass
+            validated_data["character_class"] = char_class.first()
         # TODO:
         # throw validation error if you pass more than 2 other attributes
         # or non unique or if the race doesnt has self picked attributes
