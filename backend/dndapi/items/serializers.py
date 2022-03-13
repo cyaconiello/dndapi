@@ -4,6 +4,7 @@ from items.models import Item, Weapon
 from common.util.utils import CustomMultipleChoiceField
 from common.util.choices import damage_type_choices, weapon_properties_choices
 
+
 class ItemBaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item

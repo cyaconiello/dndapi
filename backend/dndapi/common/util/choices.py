@@ -104,7 +104,7 @@ weapon_properties_choices = (
     ("loading", "loading"),
     ("range", "range"),
     ("reach", "reach"),
-    ("speacial", "speacial"),
+    ("special", "special"),
     ("thrown", "thrown"),
     ("two-handed", "two-handed"),
     ("one-handed", "one-handed"),

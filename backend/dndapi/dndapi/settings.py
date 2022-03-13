@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # my apps
     "items",
     "races",
+    "character_classes",
     "characters",
 ]
 
