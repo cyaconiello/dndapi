@@ -18,7 +18,7 @@ class Item(models.Model):
         primary_key=True, default=uuid.uuid4, unique=True, editable=False
     )
     name = models.CharField(max_length=120, unique=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True)
     treasure_grade = models.CharField(
         max_length=120, choices=treasure_grade_choices, default="normal"
     )
@@ -29,7 +29,7 @@ class Item(models.Model):
     currency_denomination = models.CharField(
         max_length=120, choices=currency_denomination_choices, default="gold"
     )
-    weight = models.CharField(max_length=1000, blank=True)
+    weight = models.PositiveIntegerField(default=1, blank=True)
 
     def __str__(self) -> str:
         return self.name
