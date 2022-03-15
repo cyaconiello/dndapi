@@ -69,12 +69,19 @@ class CharacterBaseSerializer(serializers.ModelSerializer):
             validated_data["race"].name.lower() == "half-elf"
             or validated_data["race"].name.lower() == "human variant"
         ):
-            validated_data["other_attribute_increases"] = list(
-                validated_data["other_attribute_increases"]
-            )[:2]
+            if "other_attribute_increases" in validated_data and len(validated_data["other_attribute_increases"]) > 2:
+                validated_data["other_attribute_increases"] = list(
+                    validated_data["other_attribute_increases"]
+                )[:2]
         else:
             validated_data["other_attribute_increases"] = []
-        # save the character to creat an instance
+        # max hp for the character based on hit die
+        validated_data["max_hp"] = int(validated_data["character_class"].hit_die.replace("d",""))
+        # level set to 0
+        validated_data["level"] = 1
+        # experience set to 0
+        validated_data["experience"] = 0
+        # save the character to create an instance
         instance = super().create(validated_data)
         # get the stats based on race/class/prefernce
         stats = get_character_stat_block_based_on_preference(validated_data)

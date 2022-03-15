@@ -30,6 +30,9 @@ Everything is optional but the name, for race and class one can use the name or 
 ```
 <br />
 
+`level` will default to `1` *(Cannot upadte this here, will create a level up endpoint in the future)* <br />
+`experience` will default to `0` *(use the character update endpoint)* <br />
+
 `character_stat_preference` has these choices available (defaults to `random`):
 ```json
 [
